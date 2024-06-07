@@ -1,12 +1,14 @@
 import React from 'react'
-import { Signup } from './components'
+import { Signup, Login, AuthProvider, Status } from './components'
 
 function App() {
 
   return (
-    <>
+    <AuthProvider>
+      <Status />
       <Signup />
-    </>
+      <Login />
+    </AuthProvider>
   )
 }
 
