@@ -1,13 +1,12 @@
-
+import React from 'react'
+import { Signup } from './components'
 
 function App() {
 
   return (
     <>
       <div className='w-screen h-screen bg-black'>
-        <h1 className="w-full text-3xl font-bold underline text-yellow justify-center">
-          HomePage!!!
-        </h1>
+        <Signup />
       </div>
     </>
   )
