@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { userPool } from '../aws/UserPool.js';
+import UserPool from '../aws/UserPool.js';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
@@ -7,27 +7,47 @@ const Signup = () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        userPool.signUp(email, password, [], null, (err, data) => {
+        UserPool.signUp(email, password, [], null, (err, data) => {
             if (err) console.error(err);
             console.log(data);
         });
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit} className='bg-white text-black'>
-                <label htmlFor="email">Email</label>
-                <input type="email" 
-                value={email} 
-                onChange={e => setEmail(e.target.value)}>
-                </input>
-                <label htmlFor="password">Password</label>
-                <input type="password" 
-                value={password} 
-                onChange={e => setPassword(e.target.value)}>
-                </input>
-                <button type="submit" className='bg-yellow text-black'>Signup</button>
-            </form>
+        <div className="min-h-screen flex items-center justify-center bg-white">
+            <div className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md">
+                <h2 className="text-2xl font-bold mb-6 text-center text-yellow">Signup</h2>
+                <form onSubmit={onSubmit} className="space-y-6">
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-white">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-white">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        />
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full flex justify-center py-2 px-4 border-4 border-transparent rounded-md shadow-sm text-sm font-medium text-black bg-yellow hover:border-yellow hover:bg-white"
+                        >
+                            Signup
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

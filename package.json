@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
+    "@rollup/plugin-inject": "^5.0.5",
     "amazon-cognito-identity-js": "^6.3.12",
+    "buffer": "^6.0.3",
+    "global": "^4.4.0",
+    "node-polyfill-webpack-plugin": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
