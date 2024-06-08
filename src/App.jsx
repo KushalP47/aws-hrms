@@ -1,14 +1,16 @@
 import React from 'react'
-import { Signup, Login, Logout } from './components'
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
+  
+
   return (
-      <div>
-        <Signup />
-        <Login />
-        <Logout />
+    <div className="min-h-screen flex flex-wrap content-between bg-white">
+      <div className="w-full block">
+        <Outlet />
       </div>
+    </div>
   )
 }
 

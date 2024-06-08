@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import authService from '../aws/auth.js';
 import { useDispatch } from 'react-redux';
 import { login } from '../store/authSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -37,6 +39,7 @@ const Login = () => {
                 dispatch(login({ email, token, isAdmin }));
                 console.log("Logged in as: ", email);
                 
+                navigate("/")
             } else {
                 console.log("Login Failed", error);
             }

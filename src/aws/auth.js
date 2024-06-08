@@ -1,5 +1,4 @@
 import { CognitoUserPool, AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
-import conf from '../conf/conf.js';
 import apiCall from './utils/ApiCall.js';
 
 export class AuthService{
@@ -13,16 +12,30 @@ export class AuthService{
     }
 
     // Create Account Service
-    async createAccount({ email, password }){
-        try {
+    async createAccount({ email, password }) {
+        return await new Promise((resolve, reject) => {
             this.pool.signUp(email, password, [], null, (err, data) => {
-                if (data) return data;
-                else throw err;
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(data);
+                }
             });
-        } catch (error) {
-            console.log("AWS Error :: Create Account :: ", error);
-            throw error;
-        }
+        });
+    }
+
+    // Confirm Sign Up Service
+    async confirmSignUp({ email, code }) {
+        return await new Promise((resolve, reject) => {
+            const user = new CognitoUser({ Username: email, Pool: this.pool });
+            user.confirmRegistration(code, true, (err, result) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(result);
+                }
+            });
+        });
     }
 
     // Login Service
@@ -66,22 +79,14 @@ export class AuthService{
 
     async getSession(){
         try {
-            const session = await new Promise((resolve, reject) => {
-                const user = this.pool.getCurrentUser();
-                console.log("AWS :: Get Session :: User :: ", user);
-                if (user) {
-                    user.getSession((err, session) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve(session);
-                        }
-                    });
-                } else {
-                    reject(new Error("No current user"));
-                }
-            });
-            return session;
+            const user = await this.getCurrentUser();
+            console.log("AWS :: Get Session :: User :: ", user);
+            if (user) {
+                const session = user.getSession((err, session) => {
+                    return session;
+                });
+                return session;
+            } 
         } catch (error) {
             console.error('Error getting session:', error);
             throw error; // or return a specific value or handle the error as needed
@@ -92,7 +97,7 @@ export class AuthService{
     // Logout Service
     async logout(){
         try {
-            const user = this.pool.getCurrentUser();
+            const user = await this.getCurrentUser();
             if (user) {
                 user.signOut();
                 console.log("AWS :: Logout :: Success");

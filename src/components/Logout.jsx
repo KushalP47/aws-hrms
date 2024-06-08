@@ -2,14 +2,17 @@ import React from 'react'
 import authService from '../aws/auth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../store/authSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 function Logout() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const signout = async() => {
         await authService.logout();
         dispatch(logout());
         console.log("Logged out");
+        navigate('/');
     }
     return (
         <>
