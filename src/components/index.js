@@ -1,5 +1,3 @@
-import Signup from "./Signup.jsx";
-import Login from "./Login.jsx";
-import Logout from "./Logout.jsx";
+import AuthLayout from './AuthLayout.jsx';
 
-export { Signup, Login, Logout };
+export { AuthLayout };

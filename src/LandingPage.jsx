@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login, logout } from './store/authSlice.js';
 import authService from './aws/auth.js';
+import { useNavigate } from 'react-router-dom';
 
-function App() {
+function LandingPage() {
   const dispatch = useDispatch();
   const [loading, setLoading] = React.useState(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     async function getUser() {
       try {
@@ -20,6 +20,11 @@ function App() {
             const token = session.getIdToken().jwtToken;
             const isAdmin = await authService.getUserRole({ email, token });
             dispatch(login({ email, token, isAdmin }));
+            if(isAdmin) {
+              navigate('/admin/dashboard');
+            }else{
+              navigate('/employee/dashboard');
+            }
           } else {
             dispatch(logout());
           }
@@ -40,10 +45,10 @@ function App() {
   return !loading ? (
     <div className="min-h-screen flex flex-wrap content-between bg-white">
       <div className="w-full block">
-        <Outlet />
+        
       </div>
     </div>
   ) : null;
 }
 
-export default App;
+export default LandingPage;
