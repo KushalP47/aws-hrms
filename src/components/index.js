@@ -1,3 +1,4 @@
 import AuthLayout from './AuthLayout.jsx';
+import Logo from './Logo.jsx';
 
-export { AuthLayout };
+export { AuthLayout, Logo };

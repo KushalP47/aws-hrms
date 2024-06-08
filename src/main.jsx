@@ -21,19 +21,19 @@ const router = createBrowserRouter([
     element: <LandingPage />,
     children: [
       {
-        path: '/dashboard',
+        path: '/admin/dashboard',
         element: <AdminDashboard />
       },{
-        path: '/attendance',
+        path: '/admin/attendance',
         element: <AdminAttendance />
       },{
-        path: '/leaves',
+        path: '/admin/leaves',
         element: <AdminLeaves />
       },{
-        path: '/feedback',
+        path: '/admin/feedback',
         element: <AdminFeedback />
       },{
-        path: '/payrolls',
+        path: '/admin/payrolls',
         element: <AdminPayrolls />
       }
     ]
@@ -43,19 +43,19 @@ const router = createBrowserRouter([
     element: <LandingPage />,
     children: [
       {
-        path: '/dashboard',
-        element: <h1>Employee Dashboard</h1>
+        path: '/employee/dashboard',
+        element: <EmployeeDashboard />
       },{
-        path: '/attendance',
+        path: '/employee/attendance',
         element: <EmployeeAttendance />
       },{
-        path: '/leaves',
+        path: '/employee/leaves',
         element: <EmployeeLeaves />
       },{
-        path: '/feedback',
+        path: '/employee/feedback',
         element: <EmployeeFeedback />
       },{
-        path: '/payrolls',
+        path: '/employee/payrolls',
         element: <EmployeePayrolls />
       }
     ]
@@ -64,16 +64,16 @@ const router = createBrowserRouter([
     element: <LandingPage />,
     children: [
       {
-        path: '/logout',
+        path: '/auth/logout',
         element: <Logout />
       },{
-        path: '/signup',
+        path: '/auth/signup',
         element: <Signup />
       },{
-        path: '/login',
+        path: '/auth/login',
         element: <Login />
       },{
-        path: '/confirm-signup',
+        path: '/auth/confirm-signup',
         element: <ConfirmSignup />
       }
     ]

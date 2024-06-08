@@ -1,7 +1,7 @@
 import React from 'react'
-import authService from '../aws/auth';
+import authService from '../../aws/auth';
 import { useDispatch } from 'react-redux';
-import { logout } from '../store/authSlice.js';
+import { logout } from '../../store/authSlice.js';
 import { useNavigate } from 'react-router-dom';
 
 function Logout() {
@@ -12,7 +12,7 @@ function Logout() {
         await authService.logout();
         dispatch(logout());
         console.log("Logged out");
-        navigate('/');
+        navigate('/landing-page');
     }
     return (
         <>
