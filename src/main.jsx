@@ -5,7 +5,8 @@ import App from './App.jsx'
 import './index.css'
 import { Signup, Login, Dashboard, ConfirmSignup } from './pages'
 import { Provider } from 'react-redux'
-import store from './store/store.js'
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './store/store.js';
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
       <RouterProvider router={router}/>
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
 )
