@@ -1,30 +1,56 @@
-import React, { useState, useContext } from 'react';
-import { AuthContext } from './AuthLayout.jsx';
+import React, { useState } from 'react';
+import authService from '../aws/auth.js';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/authSlice.js';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [currentSession, setCurrentSession] = useState({});
+    const dispatch = useDispatch();
 
-    const { authenticate } = useContext(AuthContext);
+    const checkUserRole = async ({ email, token }) => {
+        const isAdmin = await authService.getUserRole({ email, token });
+        console.log("isAdmin", isAdmin);
+        return isAdmin;
+    };
 
-    const onSubmit = (e) => {
+    const signin = async (e) => {
         e.preventDefault();
-        
-        authenticate(email, password)
-        .then((data) => {
-            console.log("Logged in!", data)
-        })
-        .catch((err) => {
-            console.error("Failed to login!", err)
-        });
-    }
+        setError("");
+        try {
+            const data = await authService.login({ email, password });
+            console.log(data);
+            if (data) {
+                console.log("Login Success");
+                // Getting user session
+                const session = await authService.getSession();
+                console.log("Got session!", session);
+                setCurrentSession(session);
+
+                // Get user role
+                const token = session.getIdToken().jwtToken;
+                const email = session.getIdToken().payload.email;
+                const isAdmin = await checkUserRole({ email, token });
+
+                dispatch(login({ email, token, isAdmin }));
+                console.log("Logged in as: ", email);
+                
+            } else {
+                console.log("Login Failed", error);
+            }
+        } catch (error) {
+            setError(error.message);
+        }
+    };
     
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-white">
             <div className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-yellow">Login</h2>
-                <form onSubmit={onSubmit} className="space-y-6">
+                <form onSubmit={signin} className="space-y-6">
                     <div>
                         <label htmlFor="useremail" className="block text-sm font-medium text-white">Email</label>
                         <input

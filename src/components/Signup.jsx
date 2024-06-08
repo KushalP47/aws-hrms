@@ -1,23 +1,35 @@
 import React, { useState } from 'react';
-import UserPool from '../aws/UserPool.js';
+import { useDispatch } from 'react-redux';
+import { login } from '../store/authSlice.js';
+import authService from '../aws/auth.js';
 
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const dispatch = useDispatch();
 
-    const onSubmit = (e) => {
+    const signup = async (e) => {
         e.preventDefault();
-        UserPool.signUp(email, password, [], null, (err, data) => {
-            if (err) console.error(err);
-            console.log(data);
-        });
+        setError("")
+        try {
+            const data = await authService.createAccount({ email, password });
+            console.log(data)
+            if(data){
+                console.log("Signup Success");
+            }else{
+                console.log("Login Failed", error)
+            }
+        } catch (error) {
+            setError(error.message)
+        }
     }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-white">
             <div className="bg-black p-8 rounded-lg shadow-lg w-full max-w-md">
                 <h2 className="text-2xl font-bold mb-6 text-center text-yellow">Signup</h2>
-                <form onSubmit={onSubmit} className="space-y-6">
+                <form onSubmit={signup} className="space-y-6">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-white">Email</label>
                         <input
