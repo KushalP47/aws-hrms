@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from './LandingPage.jsx'
 import './index.css'
-import { Signup, Login, Logout, ConfirmSignup } from './pages/Auth'
-import { EmployeeAttendance, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee'
-import { AdminAttendance, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin'
+import { Signup, Login, Logout, ConfirmSignup } from './pages/Auth/index.js'
+import { EmployeeAttendance, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee/index.js'
+import { AdminAttendance, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin/index.js'
+import App from './App.jsx'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './store/store.js';
@@ -13,12 +14,18 @@ import store, { persistor } from './store/store.js';
 
 const router = createBrowserRouter([
   {
-    path: '/landing-page',
-    element: <LandingPage />,
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/landing-page',
+        element: <LandingPage />
+      }
+    ]
   },
   {
     path: '/admin',
-    element: <LandingPage />,
+    element: <App />,
     children: [
       {
         path: '/admin/dashboard',
@@ -40,7 +47,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/employee',
-    element: <LandingPage />,
+    element: <App />,
     children: [
       {
         path: '/employee/dashboard',
@@ -61,7 +68,7 @@ const router = createBrowserRouter([
     ]
   },{
     path: '/auth',
-    element: <LandingPage />,
+    element: <App />,
     children: [
       {
         path: '/auth/logout',

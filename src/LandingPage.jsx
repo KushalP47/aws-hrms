@@ -81,7 +81,7 @@ function LandingPage() {
                 </div>
 
                 {/* Illustration */}
-                <div className="flex justify-center">
+                <div className="flex justify-center border-4 border-black">
                     <img src={buildingsImage} alt="Illustration" className="w-full h-auto rounded-lg shadow-lg" />
                 </div>
             </div>
