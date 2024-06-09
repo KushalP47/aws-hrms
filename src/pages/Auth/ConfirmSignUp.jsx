@@ -75,7 +75,7 @@ const ConfirmSignup = () => {
 
             {/* Footer */}
             <footer className="bg-black p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-yellow">
-                <img src={logoSrc} alt="Logo" className="h-12 mb-4 md:mb-0" />
+                <img src={logoSrc} alt="Logo" className="h-40 mb-4 md:mb-0" />
                 {/* Footer content */}
                 <div className="flex flex-col md:flex-row md:space-x-8">
                     <div className="mb-4 md:mb-0">

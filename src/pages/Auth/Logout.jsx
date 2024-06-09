@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import authService from '../../aws/auth';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/authSlice.js';
@@ -7,18 +7,25 @@ import { useNavigate } from 'react-router-dom';
 function Logout() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
-    const signout = async() => {
-        await authService.logout();
-        dispatch(logout());
-        console.log("Logged out");
-        navigate('/landing-page');
-    }
-    return (
+    useEffect(() => {
+        const signout = async () => {
+            setLoading(true);
+            await authService.logout();
+            dispatch(logout());
+            setLoading(false);
+            console.log("Logged out");
+            navigate('/landing-page');
+        }
+        signout();
+    }, [])
+
+    return !loading ? (
         <>
-            <button onClick={signout} className="bg-yellow text-black font-bold py-2 px-4 rounded">Logout</button>
+            <h1>Logout</h1>
         </>
-    )
+    ) : null
 }
 
 export default Logout

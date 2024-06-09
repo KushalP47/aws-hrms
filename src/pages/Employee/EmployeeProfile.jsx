@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
 import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
-const AdminDashboard = () => {
+const EmployeeProfile = () => {
     const logoSrc = logo;
     const illustrationSrc = illustration; 
 
@@ -18,22 +18,22 @@ const AdminDashboard = () => {
                 {/* Nav Items Section */}
                 <ul className="flex-1 space-y-4 text-xl">
                     <li>
-                        <Link to="/admin/dashboard" className="block py-2 px-4 rounded bg-yellow text-black transition duration-300">Dashboard</Link>
+                        <Link to="/employee/dashboard" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Dashboard</Link>
                     </li>
                     <li>
-                        <Link to="/admin/attendance" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Attendance</Link>
+                        <Link to="/employee/attendance" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Attendance</Link>
                     </li>
                     <li>
-                        <Link to="/admin/leaves" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Leaves</Link>
+                        <Link to="/employee/leaves" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Leaves</Link>
                     </li>
                     <li>
-                        <Link to="/admin/payrolls" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Payrolls</Link>
+                        <Link to="/employee/payrolls" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Payrolls</Link>
                     </li>
                     <li>
-                        <Link to="/admin/feedback" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Feedback</Link>
+                        <Link to="/employee/feedback" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Feedback</Link>
                     </li>
                     <li>
-                        <Link to="/admin/profile" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Profile</Link>
+                        <Link to="/employee/profile" className="block py-2 px-4 rounded text-black bg-yellow transition duration-300">Profile</Link>
                     </li>
                 </ul>
                 
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
             <div className="bg-white w-4/5 border-4 border-yellow shadow-xl flex flex-col p-8">
                 {/* Title Section */}
                 <div className="flex justify-start mb-8">
-                    <h1 className="text-4xl font-bold">Dashboard</h1>
+                    <h1 className="text-4xl font-bold">Profile</h1>
                 </div>
                 
                 {/* Content Section */}
@@ -67,4 +67,4 @@ const AdminDashboard = () => {
     );
 };
 
-export default AdminDashboard;
+export default EmployeeProfile;

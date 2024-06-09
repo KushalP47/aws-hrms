@@ -3,6 +3,7 @@ import EmployeeDashboard from './EmployeeDashboard.jsx';
 import EmployeeLeaves from './EmployeeLeaves.jsx';
 import EmployeeFeedback from './EmployeeFeedback.jsx';
 import EmployeePayrolls from './EmployeePayrolls.jsx';
+import EmployeeProfile from './EmployeeProfile.jsx';
 
-export { EmployeeAttendance, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls }
+export { EmployeeProfile, EmployeeAttendance, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls }
 

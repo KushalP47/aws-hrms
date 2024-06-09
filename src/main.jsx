@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from './LandingPage.jsx'
 import './index.css'
 import { Signup, Login, Logout, ConfirmSignup } from './pages/Auth/index.js'
-import { EmployeeAttendance, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee/index.js'
-import { AdminAttendance, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin/index.js'
+import { EmployeeAttendance, EmployeeProfile, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee/index.js'
+import { AdminAttendance, AdminProfile, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin/index.js'
 import App from './App.jsx'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
@@ -42,6 +42,9 @@ const router = createBrowserRouter([
       },{
         path: '/admin/payrolls',
         element: <AdminPayrolls />
+      },{
+        path: '/admin/profile',
+        element: <AdminProfile />
       }
     ]
   },
@@ -64,6 +67,9 @@ const router = createBrowserRouter([
       },{
         path: '/employee/payrolls',
         element: <EmployeePayrolls />
+      },{
+        path: '/employee/profile',
+        element: <EmployeeProfile />
       }
     ]
   },{

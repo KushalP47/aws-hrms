@@ -61,9 +61,9 @@ function LandingPage() {
                 {/* Left Box */}
                 <div className="bg-white border-4 border-yellow p-8 rounded-lg shadow-lg flex flex-col justify-between">
                     <div className="flex flex-col items-center justify-center h-full">
-                        <h2 className="text-black text-3xl font-bold mb-4 text-center">Welcome to HRConnect...</h2>
+                        <h2 className="text-black text-3xl font-bold mb-4 text-center">Welcome to hrCloud...</h2>
                         <p className="text-black text-lg text-center">
-                            Welcome to HRConnect, Our platform offers advanced analytics, 24/7 customer service, and innovative solutions designed to propel your business forward. Join us to unlock your full potential and explore a future of endless possibilities.
+                            Welcome to hrCloud, Our platform offers advanced analytics, 24/7 customer service, and innovative solutions designed to propel your business forward. Join us to unlock your full potential and explore a future of endless possibilities.
                         </p>
                     </div>
                     <div className="flex space-x-4 justify-center">
@@ -89,7 +89,7 @@ function LandingPage() {
 
         {/* Footer */}
         <footer className="bg-black p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-yellow">
-            <img src={logoSrc} alt="Logo" className="h-12 mb-4 md:mb-0" /> {/* Adjust height as needed */}
+            <img src={logoSrc} alt="Logo" className="h-40 mb-4 md:mb-0" /> {/* Adjust height as needed */}
             <div className="flex flex-col md:flex-row md:space-x-8">
                 <div className="mb-4 md:mb-0">
                     <h4 className="text-xl font-semibold">Company</h4>
