@@ -1,6 +1,6 @@
 import React from 'react';
 import authService from '../../aws/auth.js';
-import { useNavigate } from 'react-router-dom';
+import { Route, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import coffeshop from '../../assets/coffee-shop.svg'; // Adjust the path based on your file structure
 import Groups from '../../assets/Group.svg';
@@ -15,7 +15,12 @@ const Signup = () => {
             console.log(data);
             if (data) {
                 console.log("Signup Success");
-                navigate("/auth/confirm-signup", { state: { email } });
+                navigate("/auth/confirm-signup", { 
+                    state: { 
+                        email: email,
+                        password: password,
+                    },
+                });
             }
         } catch (error) {
             console.error("Signup Failed", error.message);

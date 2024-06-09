@@ -24,8 +24,9 @@ function LandingPage() {
           if (session) {
             const email = session.getIdToken().payload.email;
             const token = session.getIdToken().jwtToken;
+            const user_id = session.getIdToken().payload.sub;
             const isAdmin = await authService.getUserRole({ email, token });
-            dispatch(login({ email, token, isAdmin }));
+            dispatch(login({ email, token, isAdmin, user_id }));
             if(isAdmin) {
               navigate('/admin/dashboard');
             }else{
@@ -88,22 +89,22 @@ function LandingPage() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-black p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-yellow">
+        <footer className="bg-black p-8 flex flex-col md:flex-row items-start md:items-center justify-between text-white">
             <img src={logoSrc} alt="Logo" className="h-40 mb-4 md:mb-0" /> {/* Adjust height as needed */}
             <div className="flex flex-col md:flex-row md:space-x-8">
                 <div className="mb-4 md:mb-0">
-                    <h4 className="text-xl font-semibold">Company</h4>
-                    <ul className="space-y-2">
-                        <li>About Us</li>
-                        <li>Careers</li>
-                        <li>Blog</li>
+                    <h4 className="text-sm py-4 text-bold font-semibold">Company</h4>
+                    <ul className="space-y-2 text-bold">
+                        <li className='hover:text-yellow'>About Us</li>
+                        <li className='hover:text-yellow'>Careers</li>
+                        <li className='hover:text-yellow'>Blog</li>
                     </ul>
                 </div>
                 <div className="mb-4 md:mb-0">
-                    <h4 className="text-xl font-semibold">Contact</h4>
-                    <ul className="space-y-2">
-                        <li>Email: contact@yourcompany.com</li>
-                        <li>Phone: +123 456 7890</li>
+                    <h4 className="text-sm py-4 font-semibold">Contact</h4>
+                    <ul className="space-y-2 text-bold">
+                        <li className='hover:text-yellow'>Email: contact@yourcompany.com</li>
+                        <li className='hover:text-yellow'>Phone: +123 456 7890</li>
                     </ul>
                 </div>
             </div>

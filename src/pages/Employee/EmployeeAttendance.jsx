@@ -39,8 +39,8 @@ const EmployeeAttendance = () => {
                 
                 {/* Logout Section */}
                 <div className="mt-8">
-                    <button className="w-full py-2 px-4 bg-yellow text-black rounded hover:bg-white transition duration-300">
-                        <Link>
+                    <button className="w-full py-2 px-4 bg-black text-yellow border-4 border-yellow rounded hover:bg-yellow hover:text-black hover:border-black transition duration-300">
+                        <Link to="/auth/logout">
                             Logout
                         </Link>
                     </button>

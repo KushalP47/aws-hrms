@@ -6,6 +6,7 @@ import './index.css'
 import { Signup, Login, Logout, ConfirmSignup } from './pages/Auth/index.js'
 import { EmployeeAttendance, EmployeeProfile, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee/index.js'
 import { AdminAttendance, AdminProfile, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin/index.js'
+import { CreateEmployeeForm } from './pages/forms/index.js'
 import App from './App.jsx'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react';
@@ -88,6 +89,15 @@ const router = createBrowserRouter([
       },{
         path: '/auth/confirm-signup',
         element: <ConfirmSignup />
+      }
+    ]
+  },{
+    path: '/form',
+    element: <App />,
+    children: [
+      {
+        path: '/form/create-employee',
+        element: <CreateEmployeeForm />
       }
     ]
   }

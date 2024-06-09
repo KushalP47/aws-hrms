@@ -1,6 +1,6 @@
 import React from 'react';
 import authService from '../../aws/auth.js';
-import { useNavigate } from 'react-router-dom';
+import { Route, useNavigate, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import illustration from '../../assets/mailbox.svg'; // Adjust the path based on your file structure
 import Groups from '../../assets/Group.svg';
@@ -9,14 +9,20 @@ const ConfirmSignup = () => {
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const logoSrc = Groups;
-
+    const location = useLocation();
+    const { email, password } = location.state || {};
     const confirmSignup = async ({ email, code }) => {
         try {
             const data = await authService.confirmSignUp({ email, code });
             console.log(data);
             if (data) {
                 console.log("Confirmation Success");
-                navigate("/auth/login");
+                navigate("/form/create-employee", {
+                    state: { 
+                        email: email,
+                        password: password,
+                    },
+                });
             }
         } catch (error) {
             console.error("Confirmation Failed", error.message);
@@ -46,6 +52,7 @@ const ConfirmSignup = () => {
                                     {...register("email", { required: true })}
                                     type="email"
                                     id="email"
+                                    value={email}
                                     className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 />
                                 {errors.email && <p className="text-red-500">Email is required.</p>}

@@ -32,8 +32,8 @@ const Login = () => {
                 const token = session.getIdToken().jwtToken;
                 const email = session.getIdToken().payload.email;
                 const isAdmin = await checkUserRole({ email, token });
-
-                dispatch(login({ email, token, isAdmin }));
+                const user_id = session.getIdToken().payload.sub;
+                dispatch(login({ email, token, isAdmin, user_id }));
                 console.log("Logged in as: ", email);
                 
                 if (isAdmin) {

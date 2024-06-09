@@ -7,6 +7,7 @@ const authSlice = createSlice({
         email: null,
         token: null,
         isAdmin: false,
+        user_id: null,
     },
     reducers: {
         login: (state, action) => {
@@ -14,12 +15,15 @@ const authSlice = createSlice({
             state.email = action.payload.email;
             state.token = action.payload.token;
             state.isAdmin = action.payload.isAdmin;
+            state.user_id = action.payload.user_id;
             // console.log("Received userData: ", state.userData);
         },
         logout: (state) => {
             state.status = false;
-            state.userData = null;
+            state.email = null;
             state.isAdmin = false;
+            state.user_id = null;
+            state.token = null;
         }
     }
 });
