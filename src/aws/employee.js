@@ -16,7 +16,8 @@ export class EmployeeService{
     async getEmployee({token, id}) {
         const method = "GET";
         const url = `${this.url}?id=${id}`;
-        const data = await apiCall({ url, method, token, body });
+        const data = await apiCall({ url, method, token });
+        console.log(data);
         return data;
     }
 

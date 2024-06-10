@@ -9,7 +9,7 @@ const apiCall = async ({ url, method, token, body=null }) => {
                 },
                 body: JSON.stringify(body),
             });
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
