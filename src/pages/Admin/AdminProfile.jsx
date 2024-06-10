@@ -39,10 +39,6 @@ const AdminProfile = () => {
     //     salary: "",
     // }
 
-    const handleUpdate = () => {
-        // Implement update logic here
-    };
-
     return !loading ? (
         <div className="flex min-h-screen">
             {/* Navbar */}

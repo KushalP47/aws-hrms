@@ -1,10 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
-import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
+import illustration from '../../assets/buildings.svg';  
+import logo from '../../assets/Group.svg'; 
+import { useSelector } from 'react-redux';
+import leavesService from '../../aws/leaves.js';
+import { useForm } from 'react-hook-form';
+import employeeService from '../../aws/employee.js';
+
 const EmployeeLeaves = () => {
     const logoSrc = logo;
     const illustrationSrc = illustration; 
+    const token = useSelector(state => state.auth.token);
+    const user_id = useSelector(state => state.auth.user_id);
+    const email = useSelector(state => state.auth.email);
+    const [leaves, setLeaves] = useState(null);
+    const [leaveUpdated, setLeaveUpdated] = useState(0);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        const userData = employeeService.getEmployee({ token, user_id });
+        const leave = {
+            leave_id: String(Math.floor(Math.random() * 1000)),
+            user_id: user_id,
+            name: userData.name,
+            email: email,
+            status: "Pending",
+            from: data.start_date,
+            to: data.end_date,
+            reason: data.reason
+        };
+        createLeave(leave);
+    };
+
+    const createLeave = async (body) => {
+        const data = await leavesService.createLeave({ token, body });
+        if(data) {
+            fetchLeaves();
+            setLeaveUpdated(leaveUpdated + 1);
+            return true;
+        }
+        return false;
+    };
+
+    const fetchLeaves = async () => {
+        try {
+            const data = await leavesService.getLeaveList({ token });
+            data.filter(leave => leave.user_id === user_id);
+            console.log(data);
+            setLeaves(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchLeaves();
+    }, [leaveUpdated])
 
     return (
         <div className="flex min-h-screen">
