@@ -4,7 +4,7 @@ import illustration from '../../assets/buildings.svg'; // Adjust the path based 
 import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
 import { useSelector } from 'react-redux';
 import employeeService from '../../aws/employee.js';
-
+import AdminNavbar from '../../components/Navbar.jsx';
 const AdminProfile = () => {
     const logoSrc = logo;
     const illustrationSrc = illustration; 
@@ -42,43 +42,7 @@ const AdminProfile = () => {
     return !loading ? (
         <div className="flex min-h-screen">
             {/* Navbar */}
-            <nav className="bg-black text-white w-1/5 flex flex-col justify-between p-4">
-                {/* Logo Section */}
-                <div className="mb-8">
-                    <img src={logoSrc} alt="Logo" className="h-12" /> {/* Adjust height as needed */}
-                </div>
-                
-                {/* Nav Items Section */}
-                <ul className="flex-1 space-y-4 text-xl">
-                    <li>
-                        <Link to="/admin/dashboard" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Dashboard</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/attendance" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Attendance</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/leaves" className="block py-2 px-4 rounded  hover:text-yellow transition duration-300">Leaves</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/payrolls" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Payrolls</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/feedback" className="block py-2 px-4 rounded hover:text-yellow transition duration-300">Feedback</Link>
-                    </li>
-                    <li>
-                        <Link to="/admin/profile" className="block py-2 px-4 rounded text-black bg-yellow transition duration-300">Profile</Link>
-                    </li>
-                </ul>
-                
-                {/* Logout Section */}
-                <div className="mt-8">
-                    <button className="w-full py-2 px-4 bg-black text-yellow border-4 border-yellow rounded hover:bg-yellow hover:text-black hover:border-black transition duration-300">
-                        <Link to="/auth/logout">
-                            Logout
-                        </Link>
-                    </button>
-                </div>
-            </nav>
+            <AdminNavbar current="Profile"/>
 
             {/* Right Section */}
             <div className="bg-white w-4/5 border-4 border-yellow shadow-xl flex flex-col p-8">

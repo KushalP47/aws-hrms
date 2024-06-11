@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LandingPage from './LandingPage.jsx'
 import './index.css'
 import { Signup, Login, Logout, ConfirmSignup } from './pages/Auth/index.js'
-import { EmployeeAttendance, EmployeeProfile, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeePayrolls } from './pages/Employee/index.js'
-import { AdminAttendance, AdminProfile, AdminDashboard, AdminLeaves, AdminFeedback, AdminPayrolls } from './pages/Admin/index.js'
+import { EmployeeAttendance, EmployeeProfile, EmployeeDashboard, EmployeeLeaves, EmployeeFeedback, EmployeeTasks } from './pages/Employee/index.js'
+import { AdminAttendance, AdminProfile, AdminDashboard, AdminLeaves, AdminFeedback, AdminTasks } from './pages/Admin/index.js'
 import { CreateEmployeeForm } from './pages/forms/index.js'
 import App from './App.jsx'
 import { Provider } from 'react-redux'
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
         path: '/admin/feedback',
         element: <AdminFeedback />
       },{
-        path: '/admin/payrolls',
-        element: <AdminPayrolls />
+        path: '/admin/tasks',
+        element: <AdminTasks />
       },{
         path: '/admin/profile',
         element: <AdminProfile />
@@ -66,8 +66,8 @@ const router = createBrowserRouter([
         path: '/employee/feedback',
         element: <EmployeeFeedback />
       },{
-        path: '/employee/payrolls',
-        element: <EmployeePayrolls />
+        path: '/employee/tasks',
+        element: <EmployeeTasks />
       },{
         path: '/employee/profile',
         element: <EmployeeProfile />

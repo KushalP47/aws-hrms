@@ -2,20 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
 import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
-const EmployeeFeedback = () => {
+const EmployeeTasks = () => {
     const logoSrc = logo;
     const illustrationSrc = illustration; 
 
     return (
         <div className="flex min-h-screen">
             {/* Navbar */}
-            <EmployeeNavbar current="Feedback"/>
+            <EmployeeNavbar current="Tasks"/>
 
             {/* Right Section */}
             <div className="bg-white w-4/5 border-4 border-yellow shadow-xl flex flex-col p-8">
                 {/* Title Section */}
                 <div className="flex justify-start mb-8">
-                    <h1 className="text-4xl font-bold">Feedback</h1>
+                    <h1 className="text-4xl font-bold">Tasks</h1>
                 </div>
                 
                 {/* Content Section */}
@@ -31,4 +31,4 @@ const EmployeeFeedback = () => {
     );
 };
 
-export default EmployeeFeedback;
+export default EmployeeTasks;
