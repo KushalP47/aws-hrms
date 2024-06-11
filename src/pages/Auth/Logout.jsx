@@ -16,7 +16,7 @@ function Logout() {
             dispatch(logout());
             setLoading(false);
             console.log("Logged out");
-            navigate('/landing-page');
+            navigate('/');
         }
         signout();
     }, [])

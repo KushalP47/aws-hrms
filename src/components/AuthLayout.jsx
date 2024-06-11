@@ -13,7 +13,7 @@ function AuthLayout({children, isAdmin=false, isAuth=true}) {
         setLoader(true)
         if(userStatus == false){
             // no matter what happens but if userStatus is false then navigate to landing page
-            navigate('/landing-page')
+            navigate('/')
         } else if(isAuth == false && userStatus == true){
             // if user is logged in and isAuth is false then navigate to dashboard
             navigate('/dashboard')

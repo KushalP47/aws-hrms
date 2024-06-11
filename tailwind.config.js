@@ -10,7 +10,12 @@ export default {
       current: 'currentColor',
       'white': '#ffffff',
       'black': '#1c212d',
-      'yellow': '#ffee31'
+      'yellow': '#ffee31',
+      'green': '#e9fffe',
+      'green-dark': '#2d6a4f',
+      'gray': '#f5f6f9',
+      'red': '#eb9f9f',
+      'red-dark': '#e74c3c',
     },fontFamily: {
       sans: ['Poppins', 'sans-serif']
     }

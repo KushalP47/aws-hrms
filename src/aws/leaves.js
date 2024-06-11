@@ -32,6 +32,7 @@ export class LeaveService {
 
     async updateLeave({token, body}) {
         const method = "PUT";
+        console.log(body);
         const data = await apiCall({ url: this.url, method, token, body });
         return data;
     }
