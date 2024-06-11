@@ -1,12 +1,24 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
+import React, { useState, useEffect } from 'react';
+import illustration from '../../assets/buildings.svg'; 
 import EmployeeNavbar from '../../components/EmployeeNavbar.jsx';
-import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
-const EmployeeTasks = () => {
-    const logoSrc = logo;
-    const illustrationSrc = illustration; 
+import { useSelector } from 'react-redux';
+import taskService from '../../services/taskService';
 
+
+const EmployeeTasks = () => {
+    const illustrationSrc = illustration; 
+    const [tasks, setTasks] = useState([]);
+    const token = useSelector(state => state.auth.token);
+    const userId = useSelector(state => state.auth.userId);
+
+    useEffect(() => {
+        const fetchTasks = async () => {
+            const data = await taskService.getTasksList({token});
+            const taskList = data.filter(task => task.toId === userId);
+            setTasks(taskList);
+        };
+        fetchTasks();
+    }, []);
     return (
         <div className="flex min-h-screen">
             {/* Navbar */}

@@ -1,11 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
+import React, { useEffect, useState } from 'react';
+import illustration from '../../assets/buildings.svg'; 
 import EmployeeNavbar from '../../components/EmployeeNavbar.jsx';
-import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
+import logo from '../../assets/Group.svg'; 
+import { useSelector } from 'react-redux';
+import feedbackService from '../../services/feedbackService';
+
 const EmployeeFeedback = () => {
     const logoSrc = logo;
     const illustrationSrc = illustration; 
+    const [feedback, setFeedback] = useState([]); 
+    const token = useSelector(state => state.auth.token);
+    const userId = useSelector(state => state.auth.userId);
+    const [rating, setRating] = useState(0);
+
+
+    useEffect(() => {
+        const fetchFeedback = async () => {
+            const feedbackList = await feedbackService.getFeedbackList({token});
+            const userFeedback = feedbackList.filter(feedback => feedback.toId === userId);
+            const tempRating = 0;
+            for ( let i = 0; i < userFeedback.length; i++ ) {
+                tempRating += userFeedback[i].rating;
+            }
+            if (userFeedback.length > 0) {
+                tempRating = tempRating / userFeedback.length;
+            }
+            setRating(tempRating);
+            setFeedback(userFeedback);
+        };
+        fetchFeedback();
+    }, []);
 
     return (
         <div className="flex min-h-screen">

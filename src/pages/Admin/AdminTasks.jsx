@@ -16,7 +16,7 @@ const AdminTasks = () => {
             <div className="bg-white w-4/5 border-4 border-yellow shadow-xl flex flex-col p-8">
                 {/* Title Section */}
                 <div className="flex justify-start mb-8">
-                    <h1 className="text-4xl font-bold">Payrolls</h1>
+                    <h1 className="text-4xl font-bold">Tasks</h1>
                 </div>
                 
                 {/* Content Section */}
