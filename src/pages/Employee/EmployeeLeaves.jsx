@@ -27,7 +27,7 @@ const EmployeeLeaves = () => {
             user_id: user_id,
             name: userData.name,
             email: email,
-            status: "Pending",
+            leave_status: "Pending",
             from: data.start_date,
             to: data.end_date,
             reason: data.reason
@@ -48,9 +48,9 @@ const EmployeeLeaves = () => {
     const fetchLeaves = async () => {
         try {
             const data = await leavesService.getLeaveList({ token });
-            data.filter(leave => leave.user_id === user_id);
-            console.log(data);
-            setLeaves(data);
+            const filteredLeaves = data.filter(leave => leave.user_id === user_id);
+            console.log(filteredLeaves);
+            setLeaves(filteredLeaves);
         } catch (error) {
             console.log(error);
         }

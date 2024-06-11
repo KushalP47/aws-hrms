@@ -4,6 +4,7 @@ import illustration from '../../assets/buildings.svg'; // Adjust the path based 
 import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
 import { useSelector } from 'react-redux';
 import employeeService from '../../aws/employee.js';
+import EmployeeNavbar from '../../components/EmployeeNavbar.jsx';
 
 const EmployeeProfile = () => {
     const logoSrc = logo;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import illustration from '../../assets/buildings.svg'; // Adjust the path based on your file structure
+import EmployeeNavbar from '../../components/EmployeeNavbar.jsx';
 import logo from '../../assets/Group.svg'; // Adjust the path based on your file structure
 const EmployeeAttendance = () => {
     const logoSrc = logo;
