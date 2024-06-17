@@ -13,7 +13,7 @@ export class FeedbackService {
             const method = 'GET';
             const data = await apiCall({ url, method, token });
             console.log(data);
-        return data;
+            return data;
         } catch (error) {
             console.log("Error in getFeedbackList :: ", error);
         }

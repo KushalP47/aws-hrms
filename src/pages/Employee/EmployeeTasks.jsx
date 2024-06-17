@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import illustration from '../../assets/buildings.svg'; 
 import EmployeeNavbar from '../../components/EmployeeNavbar.jsx';
 import { useSelector } from 'react-redux';
-import taskService from '../../services/taskService';
+import taskService from '../../aws/employee.js';
 
 
 const EmployeeTasks = () => {
